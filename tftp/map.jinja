@@ -1,20 +1,20 @@
 {% set tftp = salt['grains.filter_by']({
   'Debian': {
     'packages': [ 'tftpd-hpa', ],
-    'service': [ 'tftpd-hpa', ],
-    'servicestate': [ 'running', ],
-    'serviceenabled': [ 'True', ],
+    'service': 'tftpd-hpa', 
+    'servicestate': 'running',
+    'serviceenabled': 'True',
   },
   'RedHat': {
     'packages': [ 'tftp-server', ],
-    'service': [ 'tftp.socket', ],
-    'servicestate': [ 'running', ],
-    'serviceenabled': [ 'True', ],
+    'service': 'tftp.socket',
+    'servicestate': 'running',
+    'serviceenabled': 'True',
   },
   'default': {
     'packages': [ 'tftp-server', ],
-    'service': [ 'tftp.socket', ],
-    'servicestate': [ 'running', ],
-    'serviceenabled': [ 'True', ],
+    'service': 'tftp.socket',
+    'servicestate': 'running',
+    'serviceenabled': 'True',
   },
 }, merge=salt['pillar.get']('tftp:lookup')) %}

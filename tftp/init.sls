@@ -6,23 +6,11 @@ tftp__pkg:
     - name: tftp
     - pkgs: {{tftp.packages}}
 
-
-#tftp__file_/etc/xinetd.d/tftp:
-#  augeas.change:
-#    - name: /etc/xinetd.d/tftp
-#    - context: /files/etc/xinetd.d/tftp
-#    - changes:
-#      - set service/disable no
-
-#xinetd:
-#  pkg.installed: []
-#  service.running:
-#    - require:
-#      - pkg: tftp
-
 tftp__service:
   service.{{tftp.servicestate}}
     - name: {{tftp.service}}
-    - enable: {{tftp.serviceenabled}}
+{% if tftp.serviceenabled == True }}
+    - enable: True
+{% endif %}
     - require:
       - pkg: tftp
