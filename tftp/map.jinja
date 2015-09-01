@@ -1,0 +1,11 @@
+{% set check_mk_agent = salt['grains.filter_by']({
+  'Debian': {
+    'packages': [ 'tftpd-hpa', ],
+  },
+  'RedHat': {
+    'packages': [ 'tftp-server', ],
+  },
+  'default': {
+    'packages': [ 'tftp-server', ],
+  },
+}, merge=salt['pillar.get']('tftp:lookup')) %}
