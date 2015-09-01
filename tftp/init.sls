@@ -1,7 +1,7 @@
 # vim: sts=2 ts=2 sw=2 et ai
 {% from "tftp/map.jinja" import tftp with context %}
 
-tftp__pkg_tftp:
+tftp__pkg:
   pkg.installed:
     - name: tftp
     - pkgs: {{tftp.packages}}
@@ -20,8 +20,9 @@ tftp__pkg_tftp:
 #    - require:
 #      - pkg: tftp
 
-tftp.socket:
-  service.running:
-    - enable: true
+tftp__service:
+  service.{{tftp.servicestate}}
+    - name: {{tftp.service}}
+    - enable: {{tftp.serviceenabled}}
     - require:
       - pkg: tftp
