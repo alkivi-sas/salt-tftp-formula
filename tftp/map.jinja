@@ -3,18 +3,18 @@
     'packages': [ 'tftpd-hpa', ],
     'service': 'tftpd-hpa', 
     'servicestate': 'running',
-    'serviceenabled': 'True',
+    'serviceenabled': True,
   },
   'RedHat': {
     'packages': [ 'tftp-server', ],
     'service': 'tftp.socket',
     'servicestate': 'running',
-    'serviceenabled': 'True',
+    'serviceenabled': True,
   },
   'default': {
     'packages': [ 'tftp-server', ],
     'service': 'tftp.socket',
     'servicestate': 'running',
-    'serviceenabled': 'True',
+    'serviceenabled': True,
   },
 }, merge=salt['pillar.get']('tftp:lookup')) %}
