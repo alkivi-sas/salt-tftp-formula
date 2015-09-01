@@ -1,4 +1,4 @@
-{% set check_mk_agent = salt['grains.filter_by']({
+{% set tftp = salt['grains.filter_by']({
   'Debian': {
     'packages': [ 'tftpd-hpa', ],
   },
