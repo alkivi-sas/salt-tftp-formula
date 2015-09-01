@@ -22,5 +22,6 @@ tftp__pkg_tftp:
 
 tftp.socket:
   service.running:
+    - enable: true
     - require:
       - pkg: tftp
