@@ -7,7 +7,7 @@ tftp__pkg:
     - pkgs: {{tftp.packages}}
 
 tftp__service:
-  service.{{tftp.servicestate}}
+  service.{{tftp.servicestate}}:
     - name: {{tftp.service}}
 {% if tftp.serviceenabled == True %}
     - enable: True
