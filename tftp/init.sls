@@ -9,7 +9,7 @@ tftp__pkg:
 tftp__service:
   service.{{tftp.servicestate}}
     - name: {{tftp.service}}
-{% if tftp.serviceenabled == True }}
+{% if tftp.serviceenabled == True %}
     - enable: True
 {% endif %}
     - require:
