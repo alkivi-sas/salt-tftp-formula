@@ -12,6 +12,8 @@ tftp_default:
     - mode: 644
     - source: salt://tftp/templates/default.jinja
     - template: jinja
+    - require:
+      - pkg: tftp
     - watch_in:
       - service: {{ tftp.service }}
 
@@ -22,6 +24,8 @@ tftp_root_dir:
     - group: {{ tftp.group }}
     - dir_mode: 755
     - file_mode: 644
+    - require:
+      - pkg: tftp
     - recurse:
       - user
       - group
