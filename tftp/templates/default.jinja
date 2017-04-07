@@ -1,0 +1,9 @@
+{% from "tftp/map.jinja" import config with context -%}
+
+# Managed by Salt, DO NOT EDIT
+# /etc/default/tftpd-hpa
+
+TFTP_USERNAME="{{ config.get('username') }}"
+TFTP_DIRECTORY="{{ config.get('directory') }}"
+TFTP_ADDRESS="{{ config.get('listen_address') }}:{{ config.get('listen_port') }}"
+TFTP_OPTIONS="{{ config.get('options')|join(' ') }}"

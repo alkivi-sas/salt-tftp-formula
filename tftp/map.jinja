@@ -1,23 +1,42 @@
 {% set tftp = salt['grains.filter_by']({
   'Debian': {
+    'user': 'tftp',
+    'group': 'tftp',
     'packages': [ 'tftpd-hpa', ],
     'service': 'tftpd-hpa', 
     'servicestate': 'running',
     'serviceenabled': True,
-    'filespath': '/var/lib/tftpboot',
+    'filespath': '/srv/tftp',
+    'default': '/etc/default/tftpd-hpa',
   },
   'RedHat': {
+    'user': 'tftp',
+    'group': 'tftp',
     'packages': [ 'tftp-server', ],
     'service': 'tftp.socket',
     'servicestate': 'running',
     'serviceenabled': True,
     'filespath': '/var/lib/tftpboot',
+    'default': '/etc/default/tftpd-hpa',
   },
   'default': {
+    'user': 'tftp',
+    'group': 'tftp',
     'packages': [ 'tftp-server', ],
     'service': 'tftp.socket',
     'servicestate': 'running',
     'serviceenabled': True,
     'filespath': '/var/lib/tftpboot',
+    'default': '/etc/default/tftpd-hpa',
   },
 }, merge=salt['pillar.get']('tftp:lookup')) %}
+
+{% set config = salt['grains.filter_by']({
+   'Debian': {
+     'username': 'tftp',
+     'directory': tftp.filespath,
+     'listen_address': '0.0.0.0',
+     'listen_port': 69,
+     'options': ['--secure'],
+   },
+}, grain='os', default='Debian', merge=salt['pillar.get']('tftp:config')) %}
