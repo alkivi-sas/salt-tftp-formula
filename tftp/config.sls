@@ -30,3 +30,5 @@ tftp_root_dir:
       - user
       - group
       - mode
+    - watch_in:
+      - service: {{ tftp.service }}
