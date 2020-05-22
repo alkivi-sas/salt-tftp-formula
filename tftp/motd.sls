@@ -3,5 +3,8 @@
 include:
   - motd
 
-{{ motd_role('tftp', 'TFTP Server') }}
+{{ motd_role('tftpd-hpa', 'TFTP Server') }}
+
+/etc/motd.d/tftp:
+  file.absent
 
